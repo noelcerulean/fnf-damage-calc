@@ -325,13 +325,15 @@ export function getKOChance(
           n: 1,
           text: qualifier + Math.round(chance * 1000) / 10 + `% chance to OHKO${afterText}`,
         };
-      } else if (chance === 0 && chanceWithEot === 1) { // if the move OHKOing is not possible, but eot damage guarantees the OHKO
+      }
+    } else if (chance == 0) {
+      if (chanceWithEot === 1) { // if the move OHKOing is not possible, but eot damage guarantees the OHKO
         return {
           chanceWithEot,
           n: 1,
           text: `guaranteed OHKO${afterText}`,
         };
-      } else if (chance === 0 && chanceWithEot > 0) { // if the move OHKOing is not possible, but eot damage might KO
+      } else if (chanceWithEot > 0) { // if the move OHKOing is not possible, but eot damage might KO
         return {
           chanceWithEot,
           n: 1,
